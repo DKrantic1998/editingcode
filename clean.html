@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>W3.CSS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7Qbd+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        #divthree {
+            background-color: #3269a8;
+            color: white;
+        }
+        /* stil za tekst polja */
+        textarea {
+            font-family: monospace;
+        }
+        #div4 {
+            background-color: gray;
+        }
+        #ht {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="div4">
+        <img src="https://thumbs.dreamstime.com/b/design-code-logo-template-illustration-106362967.jpg" width="100px">
+        <h2 id="ht">edCODE</h2>
+    </div>
+    <div id="divthree">
+        <a href="menu.html" class="w3-bar-item w3-button">Početna</a>
+        <a href="convert.html" class="w3-bar-item w3-button">Konvertuj u HTML tag</a>
+        <a href="clean.html" class="w3-bar-item w3-button">Očisti HTML kod</a>
+        <a href="list.html" class="w3-bar-item w3-button">Napravi listu</a>
+        <a href="change.html" class="w3-bar-item w3-button">Izmeni tabelu</a>
+    </div><br>
+    <div class="container mt-5">
+        <h1>Čišćenje atributa iz HTML koda</h1>
+        <p>Unesite HTML kod ispod:</p>
+        <textarea id="html-code" class="form-control" rows="10"></textarea>
+        <button id="clean-button" class="btn btn-primary mt-3">Čisti</button>
+        <hr>
+        <p>Rezultat:</p>
+        <textarea id="cleaned-html" class="form-control" rows="10"></textarea>
+    </div>
+
+    <!-- Bootstrap JS i jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript kod -->
+    <script>
+        // kada se klikne gumb za čišćenje
+        document.getElementById("clean-button").addEventListener("click", function() {
+            // dobivanje unesenog HTML koda
+            var htmlCode = document.getElementById("html-code").value;
+            // stvaranje DOM stabla iz HTML koda
+            var doc = new DOMParser().parseFromString(htmlCode, "text/html");
+            // uklanjanje atributa sa svih tagova
+            var tags = doc.getElementsByTagName("*");
+            for (var i = 0; i < tags.length; i++) {
+                tags[i].removeAttribute("class");
+                tags[i].removeAttribute("id");
+                tags[i].removeAttribute("style");
+                tags[i].removeAttribute("width");
+                tags[i].removeAttribute("height");
+            }
+            // dobivanje očišćenog HTML koda
+            var cleanedHtml = doc.documentElement.outerHTML;
+            // prikazivanje očišćenog HTML koda
+            document.getElementById("cleaned-html").value = cleanedHtml;
+        });
+    </script>
+</body>
+</html>

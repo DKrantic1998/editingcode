@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konverter Liste</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7Qbd+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        #divthreet {
+            background-color: #3269a8;
+            color: white;
+        }
+        /* stil za tekst polja */
+        textarea {
+            font-family: monospace;
+        }
+        #div5 {
+            background-color: gray;
+        }
+        #hnew {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="div5">
+        <img src="https://thumbs.dreamstime.com/b/design-code-logo-template-illustration-106362967.jpg" width="100px">
+        <h2 id="hnew">edCODE</h2>
+    </div>
+    <div id="divthreet">
+        <a href="menu.html" class="w3-bar-item w3-button">Početna</a>
+        <a href="convert.html" class="w3-bar-item w3-button">Konvertuj u HTML tag</a>
+        <a href="clean.html" class="w3-bar-item w3-button">Očisti HTML kod</a>
+        <a href="list.html" class="w3-bar-item w3-button">Napravi listu</a>
+        <a href="change.html" class="w3-bar-item w3-button">Izmeni tabelu</a>
+    </div><br>
+    <div class="container mt-5">
+        <h1 class="mb-4">Konverter Liste</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="input">Unesite reči ili kratke rečenice jednu ispod druge:</label>
+                <textarea class="form-control" id="input" rows="5"></textarea>
+            </div>
+            <div class="col-md-6">
+                <label for="list-type">Konvertuj u:</label>
+                <select class="form-control mb-3" id="list-type">
+                    <option value="ul">Nenumerisanu listu</option>
+                    <option value="ol">Numerisanu listu</option>
+                </select>
+                <button class="btn btn-primary" onclick="convertList()">Konvertuj listu</button>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <label for="output">Konvertovana lista:</label>
+                <textarea class="form-control" id="output" rows="5"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+    <!-- Link to Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        function convertList() {
+            var input = document.getElementById("input").value;
+            var listType = document.getElementById("list-type").value;
+            var lines = input.split("\n");
+            var listItems = "";
+
+            for (var i = 0; i < lines.length; i++) {
+                if (lines[i] !== "") {
+                    listItems += "<li>" + lines[i] + "</li>";
+                }
+            }
+
+            if (listType === "ol") {
+                listItems = "<ol>" + listItems + "</ol>";
+            } else {
+                listItems = "<ul>" + listItems + "</ul>";
+            }
+
+            document.getElementById("output").value = listItems;
+        }
+    </script>
+</body>
+</html>
